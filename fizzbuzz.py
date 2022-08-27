@@ -6,17 +6,23 @@ CLI-утилита, которая при запуске будет запраш
 а вместо чисел, кратных пяти — слово «Buzz».
 Если число кратно и 3, и 5, то программа должна выводить слово «FizzBuzz»
 """
+from typing import Union
 
 
-def fizzbuzz(num):
+def fizzbuzz(num) -> Union[None, str, int]:
     """
-    :param int num: целое число, которое проверяется на кратнось 3 и 5
+    :param int|str num: целое число, которое проверяется на кратнось 3 и 5
     :return:
+        не число - None
         число кратно 3 - Fizz,
         число кратно 5 - Buzz,
         число кратно 3 и 5 - FizzBuzz,
         иначе само число
      """
+    try:
+        num = int(num)  # Попытка преобразовать в целое число
+    except ValueError:
+        return None
     retstr = ""
     for k, v in ((3, "Fizz"), (5, 'Buzz')):  # Проверка на кратность
         if num % k == 0:
@@ -26,14 +32,10 @@ def fizzbuzz(num):
     return retstr
 
 
-while __name__ == '__main__':
+if __name__ == '__main__':
     print("Вас приветствует супер-программа FizzBuzz")
-    inpstr = input("Введите целое число или пустую строку для выхода: ")
-    if not inpstr:  # Если пустая строка - на выход
-        break
-    try:
-        inpnum = int(inpstr)  # Попытка преобразовать введенную строку в целое число
-    except ValueError:
-        print("Это не число")
-        continue
-    print(fizzbuzz(inpnum))
+    while 1:
+        inpstr = input("Введите целое число или пустую строку для выхода: ")
+        if not inpstr:  # Если пустая строка - на выход
+            break
+        print(fizzbuzz(inpstr))

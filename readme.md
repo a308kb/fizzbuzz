@@ -4,7 +4,7 @@
 
 [Resume.pdf](Resume.pdf)    Резюме
 
-[main.py](main.py)  Программа
+[main.py](fizzbuzz.py)  Программа
 
-[test_main.py](test_main.py)  UnitTest
+[test_main.py](test_fizzbuzz.py)  UnitTest
 
