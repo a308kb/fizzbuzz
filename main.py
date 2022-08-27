@@ -7,7 +7,8 @@ CLI-утилита, которая при запуске будет запраш
 Если число кратно и 3, и 5, то программа должна выводить слово «FizzBuzz»
 """
 
-def fizbuz(num):
+
+def fizzbuzz(num):
     """
     :param int num: целое число, которое проверяется на кратнось 3 и 5
     :return:
@@ -35,4 +36,4 @@ while __name__ == '__main__':
     except ValueError:
         print("Это не число")
         continue
-    print(fizbuz(inpnum))
+    print(fizzbuzz(inpnum))
