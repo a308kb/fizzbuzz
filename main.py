@@ -26,6 +26,7 @@ def fizbuz(num):
 
 
 while __name__ == '__main__':
+    print("Вас приветствует супер-программа FizzBuzz")
     inpstr = input("Введите целое число или пустую строку для выхода: ")
     if not inpstr:  # Если пустая строка - на выход
         break
