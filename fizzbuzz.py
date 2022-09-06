@@ -9,26 +9,40 @@ CLI-утилита, которая при запуске будет запраш
 from typing import Union
 
 
-def fizzbuzz(num) -> Union[None, str, int]:
+def str2num(in_str: str, ndigit: int = 0) -> Union[int, float]:
+    """Преобразует строку в число
+
+    :param in_str: Строка для преобразования
+    :param ndigit: Количество цифр для округления
+    :return: nan - если не удалось преобразовать,
+            целое - если ndidgit == 0,
+            float - иначе
     """
-    :param int|str num: целое число, которое проверяется на кратнось 3 и 5
-    :return:
-        не число - None
-        число кратно 3 - Fizz,
-        число кратно 5 - Buzz,
-        число кратно 3 и 5 - FizzBuzz,
-        иначе само число
-     """
+    string = in_str.strip()
     try:
-        num = int(num)  # Попытка преобразовать в целое число
+        num = float(in_str)
+        num = round(num,ndigit)
+        return num
     except ValueError:
-        return None
+        return float('nan')
+
+
+def fizzbuzz(num: int) -> str:
+    """Преобразует число в строку содержащую
+            "Fizz" если число кратно 3,
+            "Buzz" если число кратно 5,
+            "FizzBuzz" если число кратно и 3 и 5,
+            иначе само число
+
+    :param int num: целое число, которое проверяется на кратнось 3 и 5
+    :return str: Результат преобразования
+    """
     retstr = ""
     for k, v in ((3, "Fizz"), (5, 'Buzz')):  # Проверка на кратность
         if num % k == 0:
             retstr += v
     if retstr == "":  # Не кратно заданным числам
-        return num
+        retstr = str(num)
     return retstr
 
 
@@ -38,4 +52,8 @@ if __name__ == '__main__':
         inpstr = input("Введите целое число или пустую строку для выхода: ")
         if not inpstr:  # Если пустая строка - на выход
             break
-        print(fizzbuzz(inpstr))
+        num = str2num(inpstr)
+        if num == num:
+            print(fizzbuzz(num))
+        else:
+            print("Это не число, попробуйте еще раз")
